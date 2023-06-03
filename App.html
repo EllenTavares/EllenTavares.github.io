@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Para maior amor de todos os tempos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            background-color: #FFF0F5; /* Fundo rosa claro */
+            text-align: center;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #ff6600;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        #photo {
+            margin-top: 50px;
+        }
+
+        #proposal {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #buttons {
+            margin-top: 20px;
+        }
+
+        .moving-button {
+            position: relative;
+            transition: left 0.5s ease-in-out;
+        }
+
+        .moving-button:hover {
+            left: -50px;
+        }
+
+        /* Estilos para o player de áudio do Spotify */
+        #spotify-player {
+            width: 300px;
+            height: 80px;
+            position: absolute;
+            top: calc(5cm + 50px);
+            right: 20px;
+            z-index: 999;
+        }
+
+        /* Estilos opcionais para ajustar a aparência do player de áudio */
+        #spotify-player iframe {
+            border: none;
+        }
+
+        #hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('C:/Users/Cris/OneDrive/%C3%81rea%20de%20Trabalho/SiteDuda/Imagem/Coracao.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation: falling-hearts 8s infinite;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        @keyframes falling-hearts {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(100vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+        }
+    </style>
+    <script>
+        var noButtonClickCount = 0;
+        var originalButtonPosition = { left: 0, top: 0 };
+        var simButton = document.getElementById("sim-button");
+        var naoButton = document.getElementById("nao-button");
+
+        function showPopup() {
+            alert("EU SABIA! EU TEAMO");
+        }
+        
+        function moveButton() {
+            noButtonClickCount++;
+
+            if (noButtonClickCount % 4 === 0) {
+                alert("Tente de novo!");
+                resetButtonPosition();
+            }
+
+            naoButton.style.visibility = "hidden";
+            naoButton.style.marginLeft = "100%"; // Move o botão para a direita da tela
+            setTimeout(function() {
+                naoButton.style.visibility = "visible";
+                naoButton.style.marginLeft = originalButtonPosition.left;
+            }, 2000);
+        }
+
+        function resetButtonPosition() {
+            simButton.style.marginLeft = originalButtonPosition.left;
+            simButton.style.marginTop = originalButtonPosition.top;
+            naoButton.style.marginLeft = originalButtonPosition.left;
+            naoButton.style.marginTop = originalButtonPosition.top;
+            noButtonClickCount = 0;
+        }
+
+        window.onload = function() {
+            originalButtonPosition.left = simButton.style.marginLeft;
+            originalButtonPosition.top = simButton.style.marginTop;
+        };
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            document.getElementById('hearts-container').appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</head>
+<body>
+    <h1>Para maior amor de todos os tempos</h1>
+    <div id="photo">
+        <img src="C:/Users/Cris/OneDrive/%C3%81rea%20de%20Trabalho/SiteDuda/Imagem/Ellen_E_Duda.jpg" alt="Foto do Casal" height="400">
+    </div>
+    <div id="proposal">
+        <p>De todos os acontecimentos que poderiam me ocorrer, te conhecer foi a coisa mais linda que a vida me deu.</p>
+        <p>Haverá o dia em que todos os nosso planos serão verdade e quando assim for o maior dos meus problemas será perder 
+        o cobertor pra você no meio da noite.</p>
+        <p>Quer pelo amor de deus casar comigo? Eu espero seu tempo, podemos morar junto primeiro, eu entendo seu momento mas <br>
+        não quero prar de pedir, pra você não esquecer que tudo o que eu mais quero nessa vida é continuar alimentando esse amor <br>
+        que diz tanto de mim, que fez muito por mim. EU TE AMO!</p>
+        <p><em>Aceita casar comigo?</em></p>
+    </div>
+    <div id="buttons">
+        <button id="sim-button" onclick="showPopup()">Sim</button>
+        <button id="nao-button" class="moving-button" onclick="moveButton()">Não</button>
+    </div>
+
+    <div id="spotify-player">
+        <iframe src="https://open.spotify.com/embed/track/1t5ER6twfytz8d40UAy5nN" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+
+    <div id="hearts-container"></div>
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Para maior amor de todos os tempos</title>
+		<link rel="stylesheet" href="estilos.css"> <!-- Aqui está a tag link para o arquivo CSS -->
+    <!--<style>
+	 body {
+            background-color: #FFF0F5; /* Fundo rosa claro */
+            /* Restante do seu CSS */
+        }
+        body {
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('C:/Users/Cris/OneDrive/%C3%81rea%20de%20Trabalho/SiteDuda/Imagem/Coracao.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            animation: falling-hearts 8s infinite;
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        @keyframes falling-hearts {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(100vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+        }
+        
+        h1 {
+            color: #ff6600;
+            padding: 20px 0;
+            margin: 0;
+        }
+        
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 80px);
+        }
+        
+        #photo {
+            margin-top: 5cm;
+        }
+        
+        #proposal {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        #buttons {
+            margin-top: 20px;
+        }
+        
+        .moving-button {
+            position: relative;
+            transition: left 0.5s ease-in-out;
+        }
+        
+        .moving-button:hover {
+            left: -50px;
+        }
+        
+        /* Estilos para o player de áudio do Spotify */
+        #spotify-player {
+            width: 300px;
+            height: 80px;
+            position: absolute;
+            top: 5cm;
+            right: 20px;
+            z-index: 999;
+        }
+        
+        /* Estilos opcionais para ajustar a aparência do player de áudio */
+        #spotify-player iframe {
+            border: none;
+        }
+		
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('audio');
+            audio.play();
+        });
+    </script>
+</head>
+<body>
+    <h1>Pedido de Casamento</h1>
+    <div id="container">
+        <div id="photo">
+            <img src="C:/Users/Cris/OneDrive/%C3%81rea%20de%20Trabalho/SiteDuda/Imagem/Ellen_E_Duda.jpg" alt="Foto do Casal" height="400">
+        </div>
+        <div id="proposal">
+            <p>De todos os acontecimentos que poderiam me ocorrer, te conhecer foi a coisa mais linda que a vida me deu.</p>
+			<p>Haverá o dia em que todos os nosso planos serão verdade e quando assim for o maior dos meus problemas será perder 
+			o cobertor pra você no meio da noite.</p>
+			<p>Quer pelo amor de deus casar comigo? Eu espero seu tempo, podemos morar junto primeiro, eu entendo seu momento mas <br />
+			não quero prar de pedir, pra você não esquecer que tudo o que eu mais quero nessa vida é continuar alimentando esse amor <br />
+			que diz tanto de mim, que fez muito por mim. EU TE AMO!</p>
+            <p><em>Aceita casar comigo?</em></p>
+        </div>
+        <div id="buttons">
+            <button id="sim-button" onclick="showPopup()">Sim</button>
+            <button id="nao-button" class="moving-button" onclick="moveButton()">Não</button>
+        </div>
+    </div>
+
+    <div id="spotify-player">
+        <iframe src="https://open.spotify.com/embed/track/1t5ER6twfytz8d40UAy5nN" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+
+    <div id="hearts-container"></div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            document.getElementById('hearts-container').appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>-->
+
+
+
+
+
+<!--C:\Users\Cris\OneDrive\Área de Trabalho\SiteDuda\Imagem\Ellen_E_Duda.jpg-->
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pedido de Casamento</title>
+	<link rel="stylesheet" href="estilos.css"> <!-- Aqui está a tag link para o arquivo CSS -->
+      <!--<style>
+        body {
+            background-color: #ffffcc; /* Fundo amarelo claro */
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ff6600; /* Cor laranja para o cabeçalho */
+        }
+        
+        #photo {
+            margin-top: 50px;
+        }
+        
+        #proposal {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        #buttons {
+            margin-top: 20px;
+        }
+        
+        .moving-button {
+            transition: margin-left 0.5s ease-in-out;
+        }
+    </style>
+    <script>
+        var noButtonClickCount = 0;
+        var originalButtonPosition = { left: 0, top: 0 };
+        var simButton = document.getElementById("sim-button");
+        var naoButton = document.getElementById("nao-button");
+
+        function showPopup() {
+            alert("EU SABIA! EU TEAMO");
+        }
+        
+        function moveButton() {
+            noButtonClickCount++;
+
+            if (noButtonClickCount % 4 === 0) {
+                alert("Tente de novo!");
+                resetButtonPosition();
+            }
+
+            naoButton.style.visibility = "hidden";
+            naoButton.style.marginLeft = "100%"; // Move o botão para a direita da tela
+            setTimeout(function() {
+                naoButton.style.visibility = "visible";
+                naoButton.style.marginLeft = originalButtonPosition.left;
+            }, 2000);
+        }
+
+        function resetButtonPosition() {
+            simButton.style.marginLeft = originalButtonPosition.left;
+            simButton.style.marginTop = originalButtonPosition.top;
+            naoButton.style.marginLeft = originalButtonPosition.left;
+            naoButton.style.marginTop = originalButtonPosition.top;
+            noButtonClickCount = 0;
+        }
+
+        window.onload = function() {
+            originalButtonPosition.left = simButton.style.marginLeft;
+            originalButtonPosition.top = simButton.style.marginTop;
+        };
+    </script>
+</head>
+<body>
+    <h1>Pedido de Casamento</h1>
+    <div id="photo">
+        <img src="caminho_da_imagem.jpg" alt="Foto do Casal">
+    </div>
+    <div id="proposal">
+        <p>Por este meio, eu <strong>seu_nome</strong>, gostaria de fazer um pedido especial...</p>
+        <p><em>Insira aqui a frase com o pedido de casamento</em></p>
+    </div>
+    <div id="buttons">
+        <button id="sim-button" onclick="showPopup()">Sim</button>
+		<!--<button id="nao-button" class="moving-button" onclick="moveButton()">Não</button>-->
+
+        <!--<button id="nao-button" class="moving-button" onclick="moveButton()" onmouseover="this.style.marginLeft = '0'">Não</button>
+      </div>
+</body>
+</html>-->

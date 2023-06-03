@@ -1,0 +1,33 @@
+body {
+    background-color: #483D8B; /* Fundo rosa claro */
+    text-align: center;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+h1 {
+    color: #FFF0F5; /* Cor laranja para o cabeçalho */
+}
+
+#photo {
+    margin-top: 50px;
+}
+
+#container {
+    margin-top: 20px;
+    font-size: 18px;
+    padding-bottom: 100px; /* Adicionamos um preenchimento inferior para garantir espaço para a barra de rolagem */
+}
+
+#buttons {
+    margin-top: 20px;
+}
+
+.moving-button {
+    position: relative;
+    transition: left 0.5s ease-in-out;
+}
+
+.moving-button:hover {
+    left: -50px;
+}
